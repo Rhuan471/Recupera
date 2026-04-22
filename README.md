@@ -19,31 +19,31 @@
  Assim que o filósofo termina de comer, ele solta um garfo, deixando o garfo na mesa disponível para outro filósofo.
  A excecução do código é indeterteminável, ou seja, cada vez que o código é executado, a ordem em que os filósofos tentam pegar os garfos pode ser diferente, o que pode levar a resultados diferentes em cada execução. Isso é uma característica comum em sistemas concorrentes, onde a ordem de execução das threads pode variar a cada vez que o programa é executado.
 
-Filósofo 1 está pensando.
-Filósofo 4 está pensando.
-Filósofo 5 está pensando.
-Filósofo 3 está pensando.
-Filósofo 2 está pensando.
-Filósofo 1 com fome, pegou o garfo esquerdo.
-Filósofo 1 pegou o garfo direito.
-Filósofo 1 está comendo.
-Filósofo 5 com fome, pegou o garfo esquerdo.
-Filósofo 2 com fome, pegou o garfo esquerdo.
-Filósofo 3 com fome, pegou o garfo esquerdo.
-Filósofo 1 soltou os garfos.
-Filósofo 1 está pensando.
-Filósofo 4 com fome, pegou o garfo esquerdo.
-Filósofo 5 pegou o garfo direito.
-Filósofo 5 está comendo.
-Filósofo 5 soltou os garfos.
-Filósofo 5 está pensando.
-Filósofo 1 com fome, pegou o garfo esquerdo.
-Filósofo 4 pegou o garfo direito.
-Filósofo 4 está comendo.
-Filósofo 3 pegou o garfo direito.
-Filósofo 3 está comendo.
-Filósofo 2 pegou o garfo direito.
-Filósofo 2 está comendo.
-Filósofo 1 pegou o garfo direito.
-Filósofo 1 está comendo.
-Filósofo 4 soltou os garfos.
+// Filósofo 1 está pensando.
+// Filósofo 4 está pensando.
+// Filósofo 5 está pensando.
+// Filósofo 3 está pensando.
+// Filósofo 2 está pensando.
+// Filósofo 1 com fome, pegou o garfo esquerdo.
+// Filósofo 1 pegou o garfo direito.
+// Filósofo 1 está comendo.
+// Filósofo 5 com fome, pegou o garfo esquerdo.
+// Filósofo 2 com fome, pegou o garfo esquerdo.
+// Filósofo 3 com fome, pegou o garfo esquerdo.
+// Filósofo 1 soltou os garfos.
+// Filósofo 1 está pensando.
+// Filósofo 4 com fome, pegou o garfo esquerdo.
+// Filósofo 5 pegou o garfo direito.
+// Filósofo 5 está comendo.
+// Filósofo 5 soltou os garfos.
+// Filósofo 5 está pensando.
+// Filósofo 1 com fome, pegou o garfo esquerdo.
+// Filósofo 4 pegou o garfo direito.
+// Filósofo 4 está comendo.
+// Filósofo 3 pegou o garfo direito.
+// Filósofo 3 está comendo.
+// Filósofo 2 pegou o garfo direito.
+// Filósofo 2 está comendo.
+// Filósofo 1 pegou o garfo direito.
+// Filósofo 1 está comendo.
+// Filósofo 4 soltou os garfos.
