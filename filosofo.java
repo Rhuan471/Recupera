@@ -12,12 +12,24 @@
 package comanda;
 
 public class filosofo extends Thread {
-    String nome;
-    garfo garfoEsquerdo;
-    garfo garfoDireito;
+    private final String nome;
+    private garfo garfoEsquerdo;
+    private final garfo garfoDireito;
 
-    public filosofo(String nome) {
+    public filosofo(String nome, garfo garfoEsquerdo, garfo garfoDireito) {
         this.nome = nome;
+        this.garfoEsquerdo = garfoEsquerdo;
+        this.garfoDireito = garfoDireito;
+    }
+
+    public garfo getGarfoEsquerdo() {
+        return garfoEsquerdo;
+        
+    }
+
+    public void GarfoEsquerdo(garfo garfoEsquerdo) {
+        this.garfoEsquerdo = garfoEsquerdo;
+        
     }
 
     @Override
@@ -30,27 +42,60 @@ public class filosofo extends Thread {
         }
     }
 
+// Aqui é aonde inicia a ação dos filósofos, cada um deles começam a pensar, com o uso do Thread.sleep para simular o tempo gasto em cada ação. O método pegarGarfo é implementado de forma ingênua,
+// onde o filósofo tenta pegar primeiro o garfo esquerdo e depois o direito, o que pode levar a um impasse  (deadlock) se todos os filósofos fizerem isso ao mesmo tempo. O método soltarGarfo é 
+// apenas uma mensagem, pois os garfos são liberados automaticamente ao sair dos blocos synchronized.
+
     private void pensar() {
         System.out.println(nome + " está pensando.");
         try {
-            Thread.sleep((long) (Math.random() * 1000)); // Simula o tempo de pensamento
+            Thread.sleep((long) (Math.random() * 1000));
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            getMessage();
         }
     }
 
     private void pegarGarfo() {
-        // Implementar a lógica para pegar os garfos, garantindo que não haja deadlock
+// Implementação ingênua: primeiro pega o garfo esquerdo, depois o direito.
+// Este método pode levar a um impasse (deadlock) se todos os filósofos fizerem isso ao mesmo tempo. O uso de blocos synchronized garante que o filósofo tenha acesso exclusivo aos garfos enquanto os
+// estiver usando.
+        synchronized (getGarfoEsquerdo()) {
+            System.out.println(nome + " com fome, pegou o garfo esquerdo.");
+            try {
+                Thread.sleep((long) (Math.random() * 1000));
+// Simula o tempo para pegar o segundo garfo, aumentando a chance de ocorrer um impasse se todos os filósofos fizerem isso ao mesmo tempo.
+// Para evitar o deadlock, seria necessário implementar uma estratégia diferente para pegar os garfos, como por exemplo, sempre pegar o garfo de menor número primeiro ou usar um árbitro para
+// controlar o acesso aos garfos.
+            } catch (InterruptedException e) {
+// No lugar de StackTrace, o método getMessage é chamado para lidar com a exceção de forma mais adequada, tomando alguma ação corretiva.
+                getMessage();
+            }
+            synchronized (garfoDireito) {
+                System.out.println(nome + " pegou o garfo direito.");
+            }
+        }
     }
 
     private void comer() {
         System.out.println(nome + " está comendo.");
         try {
-            Thread.sleep((long) (Math.random() * 1000)); // Simula o tempo de refeição
+// Aqui simula o tempo de refeição é pausado por um período aleatório, representando o tempo que o filósofo leva para comer. O método Thread.sleep é usado para simular esse tempo, e a exceção 
+// InterruptedException é capturada para lidar com possíveis interrupções durante a pausa.
+            Thread.sleep((long) (Math.random() * 1000));
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            getMessage();
         }
     }
+
+    private void soltarGarfo() {
+        // Os garfos são liberados automaticamente ao sair dos blocos synchronized
+        System.out.println(nome + " soltou os garfos.");
+    }
+
+    private void getMessage() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+}
 
     private void soltarGarfo() {
         // Implementar a lógica para soltar os garfos após comer
